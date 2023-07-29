@@ -1,0 +1,62 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %} HCP Login{% endblock %}
+
+{% block content %}
+
+ 
+
+    <div>
+        {% include 'partial/_guest_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex">
+            <div class="mx-auto border-0 w-[30%] flex flex-col justify-center items-center">
+                    <div class="text-3xl mb-2 text-gray-700 border-0 text-center">
+                        Healthcare Provider
+                        <div class="text-2xl">Admin Login</div>
+                    </div>
+                    <!-- login form-->
+                    <div class="w-full border p-10 rounded-lg shadow-sm">
+                        <div class="py-5 text-red-600 font-semibold">
+                                {% for message in messages %}
+                                    <div>{{ message }}</div>
+                                {% endfor %}
+                        </div>
+                        <form action="{% url 'hcp_login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="flex flex-col">
+                                <label class="text-sm mb-1" for="username">
+                                    Username
+                                </label>
+                                <input type="text" name="username" class="py-3 px-3 border border-gray-400 rounded" required />
+                            </div>
+                            <div class="flex flex-col mt-3">
+                                <label class="text-sm mb-1">
+                                    Password
+                                </label>
+                                <input type="password" name="password" class="py-3 px-3 border border-gray-400 rounded" required />
+                            </div>
+                            <div class="flex justify-end border-0 mt-3">
+                                <button type="submit" class="border-0 py-2 px-4 rounded-lg bg-blue-500 hover:bg-blue-400 text-white">
+                                    Login
+                                </button>
+                            </div>
+                        
+                            
+                        </form>
+                    </div>
+
+                    <!-- end of login form-->
+
+            </div>
+            
+    </div>
+    <!-- end of content -->
+
+
+
+{% endblock %}
+

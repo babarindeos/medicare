@@ -1,0 +1,96 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %} KMC Home {% endblock %}
+
+{% block content %}
+
+ 
+    <div>
+        {% include 'partial/_kmc_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex-col px-8 py-5">
+        <div class="text-3xl border-b border-gray-200 py-2">
+            Dashboard
+        </div> 
+
+
+        <!-- Statistics -->
+        <div class="border mt-4 p-4">
+            <h2 class="text-xl">
+                Statistics
+            </h2>
+            <div class="grid grid-cols-4 border-0 w-[80%] mx-auto gap-4">
+                <!-- grid 1-->
+                    <div class="flex flex-col border py-6 px-5 items-center justify-center rounded-md">
+                            <div class="text-2xl">
+                                {{ healthProviderCount }}
+                            </div>
+                            <div class="font-semibold mt-1 mb-2">
+                                <a class="hover:underline" href='{% url 'kmc_healthcare_provider' %}'>Healthcare Providers</a>
+                            </div>
+                    </div>
+                <!-- end of grid 1-->
+
+                <!-- grid 2-->
+                <div class="flex flex-col border py-6 px-5 items-center justify-center rounded-md">
+                    <div class="text-2xl">
+                            {{ healthWorkerCount }}
+                    </div>
+                    <div class="font-semibold mt-1 mb-2">
+                            <a class="hover:underline" href='{% url 'kmc_health_worker' %}'>Health Workers</a>
+                    </div>
+                </div>
+                <!-- end of grid 2-->
+
+                <!-- grid 3-->
+                <div class="flex flex-col border py-6 px-5 items-center justify-center rounded-md">
+                    <div class="text-2xl">
+                        0
+                    </div>
+                    <div class="font-semibold mt-1 mb-2">
+                        Patients
+                    </div>
+                </div>
+                <!-- end of grid 3-->
+
+                <!-- grid 4-->
+                <div class="flex flex-col border py-6 px-5 items-center justify-center rounded-md">
+                    <div class="text-2xl">
+                        0
+                    </div>
+                    <div class="font-semibold mt-1 mb-2">
+                        Medical Records
+                    </div>
+                </div>
+                <!-- end of grid 4-->
+            </div>
+        </div> 
+        <!-- end of statistics -->
+
+        <!-- Performance & Evaluation-->
+        <div class="border mt-6 p-4">
+            <div class="grid grid-cols-2">
+                    <div>
+                            <div class="text-lg">
+                                BlockChain Transactions
+                            </div>
+                    </div>
+                    <div>
+                            <div class="text-lg">Performance Evaluation Chart</div>
+                    </div>
+            </div>
+        </div>
+        <!-- end of Performance Evaluation -->
+    
+            
+            
+    </div>
+    <!-- end of content -->
+
+
+
+{% endblock %}
+

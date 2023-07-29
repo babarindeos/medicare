@@ -1,0 +1,64 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+ 
+
+    <div>
+        {% include 'partial/_guest_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex">
+            <div class="flex-1 flex flex-col justify-center items-center">
+                <div class="w-full px-5 text-lg text-center">
+                        Delivering accessible, reliable and secured healthcare to everyone
+                </div>
+                <img src="{% static 'images/decentral.jpg' %}" class="w-[60%] h-[80%]" />
+            </div>
+            <div class="flex-1 flex flex-col justify-center items-center border-0">
+                <div  class="mx-auto border-0 w-[62%] mb-2 text-2xl">
+                    Sign In
+                </div>
+                <div class="p-20 rounded-lg border shadow-sm">                
+                        <div class="flex gap-2">   
+                                <a  href="{% url 'kmc_login' %}"  class="h-32 w-40 flex flex-col justify-center items-center border rounded-lg bg-blue-500  hover:bg-blue-400"">
+                                    <div><img src="{% static 'images/km2.png' %}" class="w-20" /></div>
+                                    <div class="font-semibold text-sm text-white">KusoMedicare</div> 
+                                </a>
+                                <a href="{% url 'hcp_login' %}"  class="h-32 w-40 flex flex-col justify-center items-center border rounded-lg bg-blue-500  hover:bg-blue-400"">
+                                        <div>
+                                            <img src="{% static 'images/hc1.png' %}" class="w-24" /> 
+                                        </div>
+                                        <div class="text-white text-sm font-semibold">Healthcare Provider</div>
+                                    </a>
+
+                        </div>
+                        <div class="flex gap-2 mt-2">
+                                <a href="hw/hw_login"  class="h-32 w-40 flex flex-col justify-center items-center border rounded-lg bg-blue-500 hover:bg-blue-400">
+                                        <div>
+                                            <img src="{% static 'images/doctor.png' %}" class="w-10" />
+                                        </div>
+                                        <div class="text-white text-sm font-semibold">Healthcare Worker</div>
+                                </a>
+                                <a href="patient/patient_login"  class="h-32 w-40 flex flex-col justify-center items-center border rounded-lg bg-blue-500 hover:bg-blue-400">
+                                        <div>
+                                            <img src="{% static 'images/patient2.png' %}" class="w-20" />
+                                        </div>
+                                        <div class="text-white text-sm font-semibold">Patient</div>
+                                </a>
+
+                        </div>
+                </div>
+            </div>
+    </div>
+    <!-- end of content -->
+
+
+
+
+{% endblock %}
+

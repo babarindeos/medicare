@@ -1,0 +1,178 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %} Create Health Worker  {% endblock %}
+
+{% block content %}
+ 
+
+    <div>
+        {% include 'partial/_hcp_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex-col px-8 py-5">
+        <div class="text-3xl border-b border-gray-200 py-2">
+            Create Health Worker
+        </div> 
+
+
+        <!-- Statistics -->
+        <div class="flex flex-col border mt-4 p-4">
+            
+            
+            <div class="flex flex-col flex-1 w-[100%] mx-auto gap-4">
+                    <div class="border-0 flex px-3 py-3">
+                            <div class="flex flex-col flex-1">
+                                        {% for message in messages %}
+                                                <div class="mx-8 py-2 border-0 text-md font-semibold text-red-500">{{ message }}</div>
+                                        {% endfor %}
+                                    
+
+                                    <!-- form-->
+                                    <form method="POST" action="{% url 'hw_healthworker_create' %}" class="flex flex-col w-[100%] space-x-4">
+                                        {% csrf_token %}
+                                        <div class="flex "><!-- top section of form -->
+                                                        <div class="left-pane flex-col flex-1 px-4"> 
+                                                                    <div class="flex flex-col border-1">
+                                                                        <label
+                                                                            for="staffno" class="py-1 text-sm">
+                                                                        Staff No.
+                                                                        </label>
+                                                                        <input type="text" id="staffno" name="staffno" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div> 
+                                                                    <div class="flex space-x-1">
+                                                                            <div class="flex-1">
+                                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                                        <label
+                                                                                            for="firstname" class="py-1 text-sm">
+                                                                                            Firstname
+                                                                                        </label>
+                                                                                        <input type="text" id="firstname" name="firstname" class="border rounded 
+                                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                                    </div>
+                                                                            </div>
+                                                                            <div class="flex-1">
+                                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                                        <label
+                                                                                            for="lastname" class="py-1 text-sm">
+                                                                                            Lastname
+                                                                                        </label>
+                                                                                        <input type="text" id="lastname" name="lastname" class="border rounded 
+                                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    
+                                                                          
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="role" class="py-1 text-sm">
+                                                                            Role
+                                                                        </label>
+                                                                        <select type="text" id="role" name="role" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required>
+                                                                            <option>-- Select Role --</option>
+                                                                            {% for role in roles %}
+                                                                                <option>{{ role.name }}</option>
+                                                                            {% endfor %}
+                                                                            
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="experience" class="py-1 text-sm">
+                                                                            Years of Experience
+                                                                        </label>
+                                                                        <input type="number" id="experience" name="experience" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>                                  
+                                                                    
+                                    
+                                    
+                                                                    
+                                                        </div><!-- end of left pane -->  
+                                                        <div class="flex-1 px-2">
+                                                                    <div class="flex flex-col border-1">
+                                                                        <label
+                                                                            for="phone" class="py-1 text-sm">
+                                                                            Phone
+                                                                        </label>
+                                                                        <input type="text" id="phone" name="phone" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>     
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="email" class="py-1 text-sm">
+                                                                            Email
+                                                                        </label>
+                                                                        <input type="email" id="email" name="email" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>     
+
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="username" class="py-1 text-sm">
+                                                                        Access username
+                                                                        </label>
+                                                                        <input type="text" name="username" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>         
+                                                                    
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="password" class="py-1 text-sm">
+                                                                        Access Password
+                                                                        </label>
+                                                                        <input type="password" name="password" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>     
+                                                                    
+                                                                    
+                                                                   
+                                                        </div>  <!-- end of right panel -->   
+                                        </div><!-- end of top section of form-->
+                                        
+                                        <!-- button -->
+                                        <div class="border-0 text-center mt-3">
+                                            <div class="flex justify-center space-x-3">
+                                                <button type="submit" class="bg-blue-500 bg-rounded py-2 px-3 rounded-lg text-white mt-1">
+                                                    Create Health Worker
+                                                </button>
+    
+                                                <button class="bg-red-500 bg-rounded py-2 px-3 rounded-lg text-white mt-1">
+                                                    Reset form
+                                                </button>
+                                            </div>   
+                                        </div>
+                                        <!-- end of button -->
+                                       
+        
+                                    </form>
+                                    <!-- end of form-->
+
+                                    
+
+                                    
+                            </div>
+
+                           
+                    </div>
+            </div>
+        </div> 
+        <!-- end of statistics -->
+
+       
+    
+            
+            
+    </div>
+    <!-- end of content -->
+
+
+
+
+{% endblock %}
+

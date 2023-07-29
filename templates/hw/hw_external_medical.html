@@ -1,0 +1,163 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %} External Medical Access  {% endblock %}
+
+{% block content %}
+ 
+
+    <div>
+        {% include 'partial/_hw_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex-col px-8 py-5">
+        <div class="text-3xl border-b border-gray-200 py-2">
+            External Medical Access
+        </div> 
+
+
+        <!-- Statistics -->
+        <div class="flex flex-col border mt-4 p-4">
+            
+            
+            <div class="flex flex-col flex-1 w-[50%] mx-auto gap-4">
+                    <div class="border-0 flex px-3 py-3">
+                            <div class="flex flex-col flex-1">
+                                        {% for message in messages %}
+                                                <div class="mx-8 py-2 border-0 text-md font-semibold text-red-500">{{ message }}</div>
+                                        {% endfor %}
+                                    
+
+                                    <!-- form-->
+                                    <form method="POST" action="{% url 'hw_create_internal_shared_access' %}" class="flex flex-col w-[100%] space-x-4">
+                                        {% csrf_token %}
+                                        <div class="flex "><!-- top section of form -->
+                                                        <div class="left-pane flex-col flex-1 px-4"> 
+                                                                   
+                                                                   
+                                                                    
+                                                                          
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="patient" class="py-1 text-sm">
+                                                                            Patient
+                                                                        </label>
+                                                                        <select type="text" id="patient" name="patient" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required>
+                                                                            <option value="">-- Select Patient --</option>   
+                                                                                {% for patient in patients%}
+                                                                                <option value="{{ patient.id }}">{{ patient.firstname }} {{ patient.lastname }}</option>                                                                                  
+                                                                                {% endfor %}                                                                       
+                                                                            
+                                                                        </select>
+                                                                    </div>                                                                   
+
+
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="phone" class="py-1 text-sm">
+                                                                            Recipient Public Key
+                                                                        </label>
+                                                                        <input type="text" id="phone" name="phone" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>     
+
+
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="phone" class="py-1 text-sm">
+                                                                            Sign with My Private Key
+                                                                        </label>
+                                                                        <input type="text" id="phone" name="phone" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" required />
+                                                                    </div>     
+
+
+                                                                                               
+                                                                    
+                                    
+                                    
+                                                                    
+                                                        </div><!-- end of left pane -->  
+                                                          
+                                        </div><!-- end of top section of form-->
+                                        
+                                        <!-- button -->
+                                        <div class="border-0 text-center mt-3">
+                                            <div class="flex justify-center space-x-3">
+                                                <button type="submit" class="bg-blue-500 bg-rounded py-2 px-3 rounded-lg text-white mt-1">
+                                                    Grant Access
+                                                </button>
+    
+                                                
+                                            </div>   
+                                        </div>
+                                        <!-- end of button -->
+                                       
+        
+                                    </form>
+                                    <!-- end of form-->
+
+                                    
+
+                                    
+                            </div>
+
+                           
+                    </div>
+            </div>
+
+            
+
+            <hr/>
+       
+            <!-- Show Shared Data -->  
+                <br/>
+                <h2 class="text-2xl mb-2">Shared Access</h2>
+                        <!-- table -->
+                    <table width="100%" cellpadding="10px">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="text-left border-0 border-blue-800" width="5%">SN</th>
+                                <th class="text-left border-0 border-blue-800" width="20%">Healthworker</th>
+                                <th class="text-left border-0 border-blue-800" width="20%">Patient</th>                                
+                                <th class="text-left border-0 border-blue-800" width="20%">Owner</th>                                
+                                <th class="text-left border-0 border-blue-800" width="15%">Date</th>                            
+                                <th class="text-left border-0 border-blue-800" width="25%" >Actions</th>
+                            </tr>                    
+                        </thead>
+                        <tbody> 
+                                {% for sh in sharedaccess %}
+                                    <tr>
+                                        <td class="text-center">{{ forloop.counter }}.</td>
+                                        <td>{{ sh.healthworker.firstname }} {{ sh.healthworker.lastname }}
+                                            <br><small>{{ sh.healthworker.role }}</small></td>                                        
+                                            <td>{{ sh.patient.firstname }} {{sh.patient.lastname}}</td>
+                                            <td>{{ sh.user.first_name }} {{sh.user.last_name}}</td>
+                                            <td>{{ sh.date}}</td>
+                                            <td>
+                                                <a href="{% url 'hw_shared_access_revoke' sh.id %}"
+                                                class="rounded-full px-8 py-1 border bg-red-400 text-white text-sm font-semibold">
+                                                    Revoke
+                                                </a>
+                                            </td>
+                                    </tr>
+                                {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>           
+
+            <!-- end of shared data -->
+            
+            <!-- end of statistics -->
+    </div>
+    <!-- end of content -->
+
+
+
+
+{% endblock %}
+

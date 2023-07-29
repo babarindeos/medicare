@@ -1,0 +1,113 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}  Patients {% endblock %}
+
+{% block content %}
+ 
+
+    <div>
+        {% include 'partial/_hw_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex-col px-8 py-5">
+        <div class="text-3xl border-b border-gray-200 py-2">
+            Patients ({{ count }})
+        </div> 
+
+
+        <!-- Statistics -->
+        <div class="flex flex-col border mt-4 p-4">
+            <div class="flex flex-row justify-between px-4 mb-5">
+                    <div class="flex w-[15%]">
+                        <input type="text" name="search" class="border py-2 px-8 border-gray-300 rounded-full"/>
+                        <div class="absolute border-0 py-2 px-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                              </svg>
+                              
+                        </div>
+                    </div>
+
+                    <div class="py-2">
+                        <a href="{% url 'hw_patient_create' %}" class="py-3 px-6 rounded-full text-sm font-semibold bg-blue-300 text-black
+                            hover:bg-blue-400 hover:text-white ">
+                                Create Patient
+                        </a>
+                    </div>
+                    
+            </div>
+            
+            <div class="flex flex-col flex-1 border w-[100%] mx-auto gap-4">
+                    <!-- table -->
+                    <table width="100%" cellpadding="10px">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="text-left border-0 border-blue-800" width="5%">SN</th>
+                                <th class="text-left border-0 border-blue-800" width="10%">File No.</th>
+                                <th class="text-left border-0 border-blue-800" width="12%">Firstname</th>
+                                <th class="text-left border-0 border-blue-800" width="12%">Lastname</th>
+                                <th class="text-left border-0 border-blue-800" width="15%">Gender</th>
+                                <th class="text-left border-0 border-blue-800" width="10%">Phone</th>
+                                <th class="text-left border-0 border-blue-800" width="10%">Email</th>
+                                <th class="text-left border-0 border-blue-800" width="15%">Date</th>                            
+                                <th class="text-left border-0 border-blue-800" width="30%" >Actions</th>
+                            </tr>                    
+                        </thead>
+                        <tbody> 
+                            {% for patient in patients reversed %}
+                                <tr class="border-b">    
+                                    <td class="text-center">{{ forloop.counter }}.</td>
+                                    <td>
+                                            <div>{{ patient.recordno }}</div>                                            
+
+                                    </td>
+                                    <td>
+                                        <div>{{ patient.firstname }}</div>                
+
+                                    </td>
+                                    <td>
+                                        <div>{{ patient.lastname }}</div>                
+
+                                    </td>
+                                    <td>{{ patient.gender }}</td>
+                                    <td>{{ patient.phone }}</td>
+                                    <td>{{ patient.email }}</td>
+                                    <td>{{ patient.date|date:"F d, Y" }}</td>
+                                    
+                                    
+                                    <td>
+                                        <div class="text-sm">
+                                                <span class="mr-4">
+                                                    <a class="underline" href='hw_patient/edit/{{ patient.id }}'>Edit</a>
+                                                </span>
+                                                
+                                        </div>
+                                    </td>
+                                </tr>    
+                            
+                            {%  endfor  %}
+        
+                        </tbody>
+                        
+                    </table>
+
+
+                    <!-- end of table-->
+            </div>
+        </div> 
+        <!-- end of statistics -->
+
+       
+    
+            
+            
+    </div>
+    <!-- end of content -->
+
+
+
+
+{% endblock %}
+

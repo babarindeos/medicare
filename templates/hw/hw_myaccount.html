@@ -1,0 +1,166 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}  My Account {% endblock %}
+
+{% block content %}
+ 
+
+    <div>
+        {% include 'partial/_hw_nav.html' %}
+    </div>
+
+    <!-- content -->
+    <div class="content-section flex-1 flex-col px-8 py-5">
+        <div class="text-3xl border-b border-gray-200 py-2">
+            My Account
+        </div> 
+
+
+        <!-- Statistics -->
+        <div class="flex flex-col border mt-4 p-4">
+            
+            
+            <div class="flex flex-col flex-1 w-[50%] mx-auto gap-4">
+                    <div class="border-0 flex px-3 py-3">
+                            <div class="flex flex-col flex-1">
+                                        {% for message in messages %}
+                                                <div class="mx-8 py-2 border-0 text-md font-semibold text-red-500">{{ message }}</div>
+                                        {% endfor %}
+
+                                        
+                                    
+
+                                    <!-- form-->
+                                    <form method="POST" action="{% url 'hw_generate_userkey' %}" class="flex flex-col w-[100%] space-x-4">
+                                        {% csrf_token %}
+                                        <div class="flex "><!-- top section of form -->
+                                                        <div class="left-pane flex-col flex-1 px-4">                     
+                                                                   
+                                                                    
+                                                                          
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="firstname" class="py-1 text-sm">
+                                                                            Firstname
+                                                                        </label>
+                                                                        <input type="text" id="firstname" disabled name="patient" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" 
+                                                                                                                    value="{{ user.first_name }}"
+                                                                                                                    required>
+                                                                           
+                                                                    </div>
+
+
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="lastname" class="py-1 text-sm">
+                                                                            Lastname
+                                                                        </label>
+                                                                        <input type="text" id="lastname" disabled name="lastname" class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" 
+                                                                                                                    value="{{ user.last_name }}"
+                                                                                                                    required>
+                                                                            
+                                                                    </div>
+
+
+                                                                    <div class="flex flex-col border-1 mt-2">
+                                                                        <label
+                                                                            for="email" class="py-1 text-sm">
+                                                                            Email
+                                                                        </label>
+                                                                        <input type="text" id="email" name="email" disabled class="border rounded 
+                                                                                                                    border-gray-400 py-3 px-3" 
+                                                                                                                    value="{{ user.email }}"
+                                                                                                                    required>
+                                                                            
+                                                                    </div>
+
+
+                                                                    
+                                                                    <!-- keys -->
+                                                                    <div class="mt-8">
+                                                                                <h3 class="text-2xl">My Security Keys</h3>
+
+                                                                                <!-- Public Key-->
+                                                                                <div class="flex flex-col border-1 mt-2">
+                                                                                    <label
+                                                                                        for="patient" class="py-1 text-sm">
+                                                                                        Public Key
+                                                                                    </label>
+                                                                                    <div rows="3" disabled id="public_key" name="public_key"  class="border rounded 
+                                                                                                                                border-gray-400 py-3 px-3 text-sm">
+                                                                                            {{ userkey.public_key }}
+                                                                                </div>
+                                                                                        
+                                                                                </div>
+                                                                                <!-- end of public key-->
+
+                                                                                <!-- Private Key-->
+                                                                                <div class="flex flex-col border-1 mt-2">
+                                                                                    <label
+                                                                                        for="patient" class="py-1 text-sm">
+                                                                                        Private Key
+                                                                                    </label>
+                                                                                    <div rows="10" id="private_key" name="private_key" class="border rounded 
+                                                                                                                                border-gray-400 py-3 px-3 text-sm" disabled>
+                                                                                            {{ userkey.private_key }}
+                                                                                    </div>
+                                                                                        
+                                                                                </div>
+
+                                                                                <!-- end of Private Key-->
+
+
+
+                                                                                
+                                                                    </div>
+                                                                    <!-- end of keys-->
+                                                                    
+                                    
+                                    
+                                                                    
+                                                        </div><!-- end of left pane -->  
+                                                          
+                                        </div><!-- end of top section of form-->
+                                        
+                                        <!-- button -->
+                                        <div class="border-0 text-center mt-3">
+                                            <div class="flex justify-center space-x-3">
+                                                <button type="submit" class="bg-green-500 bg-rounded py-2 px-3 rounded-lg text-white mt-1">
+                                                    Generate Key
+                                                </button>
+    
+                                                
+                                            </div>   
+                                        </div>
+                                        <!-- end of button -->
+                                       
+        
+                                    </form>
+                                    <!-- end of form-->
+
+                                    
+
+                                    
+                            </div>
+
+                           
+                    </div>
+            </div>
+
+            
+
+           
+                    
+        
+        </div>            
+    </div>
+    <!-- end of content -->
+
+
+
+
+{% endblock %}
+

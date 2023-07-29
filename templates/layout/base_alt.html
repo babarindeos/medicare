@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <title>KusoMedicare | {% block title %}{% endblock %}</title>
+        <link href="https://cdn.tailwindcss.com/2.2.19/tailwind.min.css" rel="stylesheet">
+
+        <!-- MDB icon -->
+        <link rel="icon" href="{% static 'img/mdb-favicon.ico' %}" type="image/x-icon" />
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <!-- Google Fonts Roboto -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+        />
+        <!-- MDB -->
+        <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+    </head>
+    <body>
+        <div class="flex flex-col justify-between h-screen border-0"></div>
+            {% block content %}
+            {% endblock %}
+
+
+          
+        <!-- footer-->
+        <div  class="footer-section py-3 flex justify-between px-5 text-sm bg-gray-200"  >
+            <div>&copy2023. All rights reserved.</div>
+            <div class="flex gap-8">
+                <div class="hover:underline"><a href="#">Privacy Policy</a></div>
+                <div class="hover:underline"><a href="#">Terms & conditions</a></div>
+            </div>
+        </div>
+        <!-- end of footer -->
+</div>
+    </body>
+</html>
