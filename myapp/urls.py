@@ -3,6 +3,8 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('about', views.about, name='about'),
+    path('contact', views.contact, name='contact'),
     path('kmc/login', views.kmc_login, name='kmc_login'),
     path('kmc/home', views.kmc_home, name='kmc_home'),
     path('kmc/healthcare_provider', views.kmc_healthcare_provider, name='kmc_healthcare_provider'),

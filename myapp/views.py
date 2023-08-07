@@ -18,6 +18,13 @@ def index(request):
     return render(request, 'index.html')
 
 
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+
 def kmc_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -160,6 +167,7 @@ def hcp_login(request):
                 return redirect('hcp_login')
         else:
                 messages.info(request, 'Invalid Credentials')
+                return redirect('hcp_login')
     else:
         return render(request, 'hcp/hcp_login.html')
 
